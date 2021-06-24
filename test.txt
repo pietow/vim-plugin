@@ -1,13 +1,10 @@
-.fname-$*4
-.fname-1 {
-}
- 
-.fname-2 {
-}
- 
-.fname-3 {
-}
- 
-.fname-4 {
-}
- 
+testjk
+if
+
+else
+
+endif
+
+
+bla(bh, 'gh', "ik")
+bla
