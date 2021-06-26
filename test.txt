@@ -1,10 +1,7 @@
 testjk
-if
-
-else
-
-endif
-
-
-bla(bh, 'gh', "ik")
+bla((jkbh), 'gh', "ik", )
 bla
+iasdasda('kkkk', ssss)
+class {
+fgfgh
+}
