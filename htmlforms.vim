@@ -55,17 +55,33 @@ def rmNum():
 
 def markCommaSeperated():
     pos = getPosCol()
-    #vim.command(":call cursor(1,100)")
-    print(pos)
-    ss = vim.command(":echom search('(','W'," + str(pos[0]) + ")")
-    print(ss)
-    pos = getPosCol()
-    print(pos)
-    ss = vim.command(":echom search(',','W'," + str(pos[0]) + ")")
-    print(ss)
-    
-    
-    #vim.command('1d')
+    cw = vim.current.window
+
+    ####get outter Pairs of line pos[0]
+    cw.cursor = (pos[0], 0) #start of line at line pos[0]
+    left_pos = vim.eval("searchpos('(','cn'," + str(pos[0]) + ")")
+    cw.cursor = (pos[0], 1000)  #end of line at line pos[0]
+    right_pos = vim.eval("searchpairpos('(', '', ')', 'cn')")
+    cw.cursor = (pos)
+    #print(left_pos, right_pos)
+
+    #####get commas
+    #commas = vim.command("s/,//gn")
+    #commas = vim.eval("expand('<cWORD>')")
+    b = vim.current.buffer
+    commas = b[pos[0]-1]
+    first_comma = commas.find(',') + 1 
+    commas = [pos + 1 for pos, char in enumerate(commas) if char == ',']
+    cw.cursor = (pos[0], int(left_pos[1]))
+    vim.command('normal v')
+    cw.cursor = (pos[0], 10)
+    print(commas)
+
+
+    #    print(right_pos)
+    #jk    ss = vim.command(":echom search('(','W'," + str(pos[0]) + ")")
+    #jk    print(ss)
+
 en
 
 " nnoremap <silent> ,t :python3 inputforms()<CR>
